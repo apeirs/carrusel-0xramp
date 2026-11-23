@@ -1,0 +1,164 @@
+/* Carrusel "Conoce las funciones principales de 0xramp" — Zcash en Español
+   Lienzo: 1080 x 1350 px (4:5, carrusel de X).
+   Colores: ZecHub Visual Identity Guidelines (zechub.wiki/visual-identity).
+   Tipografía: Montserrat (tipografía secundaria de ZecHub, SIL OFL 1.1, incluida en fonts/).
+   La primaria, Bossa, no está en Google Fonts; si la tienes instalada, se usa automáticamente en los titulares. */
+
+@font-face { font-family: "Montserrat"; font-weight: 400; src: url("fonts/Montserrat-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Montserrat"; font-weight: 500; src: url("fonts/Montserrat-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Montserrat"; font-weight: 600; src: url("fonts/Montserrat-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Montserrat"; font-weight: 700; src: url("fonts/Montserrat-Bold.ttf") format("truetype"); }
+@font-face { font-family: "Montserrat"; font-weight: 800; src: url("fonts/Montserrat-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  /* Paleta principal ZecHub */
+  --zh-black-blue: #06192f;
+  --zh-slate-blue: #39516c;
+  --zh-eerie-black: #181818;
+  /* Acentos */
+  --zh-hadfield-blue: #147df5;
+  --zh-ice-blue: #7dafeb;
+  /* Grises */
+  --zh-light-grey: #e2e2e2;
+  --zh-mid-grey: #b9b9b9;
+  /* Secundarios */
+  --zh-golden-yellow: #f5b92d;
+  --zh-pale-blue: #cde1f0;
+  --white: #ffffff;
+
+  --m: 72px;              /* margen exterior */
+  --titulo: "Bossa", "Montserrat", system-ui, sans-serif;
+  --texto: "Montserrat", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1350px; background: var(--zh-black-blue); }
+
+.slide {
+  position: relative;
+  width: 1080px; height: 1350px;
+  overflow: hidden;
+  padding: 56px var(--m) 0;
+  color: var(--zh-light-grey);
+  font-family: var(--texto);
+  background:
+    radial-gradient(900px 700px at 105% -10%, rgba(20, 125, 245, 0.28), transparent 60%),
+    radial-gradient(700px 600px at -10% 110%, rgba(57, 81, 108, 0.55), transparent 65%),
+    var(--zh-black-blue);
+}
+/* Trama sutil inspirada en el "Brand Background Pattern" de la guía */
+.slide::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(125, 175, 235, 0.05) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(125, 175, 235, 0.05) 2px, transparent 2px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.15) 55%, rgba(0,0,0,.6));
+}
+.slide > * { position: relative; }
+
+/* Cabecera */
+.top { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 28px; color: var(--white); letter-spacing: .2px; }
+.brand img { width: 60px; height: 60px; }
+.count {
+  font-family: var(--titulo); font-weight: 800; font-size: 28px; color: var(--white);
+  border: 2px solid rgba(125, 175, 235, 0.5); border-radius: 999px; padding: 8px 22px;
+}
+.count span { color: var(--zh-ice-blue); font-weight: 600; }
+
+/* Titular */
+.kicker {
+  margin-top: 46px;
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: 26px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--zh-ice-blue);
+}
+.kicker svg { width: 34px; height: 34px; stroke: var(--zh-ice-blue); }
+h1 { font-family: var(--titulo); color: var(--white); line-height: 1.05; margin-top: 14px; }
+h1 .fn { display: block; font-size: 96px; font-weight: 800; letter-spacing: -1.5px; color: var(--white); }
+h1 .fn::after {
+  content: ""; display: block; width: 120px; height: 10px; border-radius: 6px;
+  background: var(--zh-hadfield-blue); margin: 20px 0 22px;
+}
+h1 .sub { display: block; font-size: 50px; font-weight: 700; color: var(--zh-pale-blue); line-height: 1.15; letter-spacing: -.3px; }
+
+/* Cuerpo: puntos + teléfono */
+.row { position: absolute; left: var(--m); right: var(--m); top: 470px; bottom: 132px; display: flex; gap: 44px; }
+.col { flex: 1; display: flex; flex-direction: column; gap: 26px; padding-top: 6px; }
+.points { list-style: none; display: flex; flex-direction: column; gap: 26px; }
+.points li {
+  display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: start;
+  font-size: 31px; line-height: 1.32; font-weight: 500; color: var(--zh-light-grey);
+}
+.points li::before {
+  counter-increment: p; content: counter(p);
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--zh-hadfield-blue); color: var(--white);
+  font: 800 24px/1 var(--texto); margin-top: 2px;
+}
+.points { counter-reset: p; }
+.points strong { color: var(--white); font-weight: 700; }
+
+.note {
+  margin-top: 4px;
+  border-radius: 22px; padding: 22px 26px;
+  font-size: 25px; line-height: 1.36; font-weight: 500; color: var(--white);
+  background: rgba(245, 185, 45, 0.12); border: 2px solid rgba(245, 185, 45, 0.55);
+}
+.note b { color: var(--zh-golden-yellow); font-weight: 700; }
+.note.blue { background: rgba(20, 125, 245, 0.14); border-color: rgba(125, 175, 235, 0.55); }
+.note.blue b { color: var(--zh-ice-blue); }
+
+.phone {
+  /* alto = alto de .row (748 px); ancho = proporción de la captura (1170x2532) + marco */
+  flex: none; width: 360px; height: 748px; align-self: flex-start;
+  border-radius: 52px; padding: 10px;
+  background: #0b2442;
+  border: 3px solid rgba(125, 175, 235, 0.55);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 10px rgba(20, 125, 245, 0.10);
+}
+.phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; border-radius: 42px; }
+
+/* Pie */
+.bottom {
+  position: absolute; left: var(--m); right: var(--m); bottom: 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 2px solid rgba(125, 175, 235, 0.22); padding-top: 22px;
+}
+.bottom .url { font-weight: 700; font-size: 27px; color: var(--white); }
+.bottom .url span { color: var(--zh-ice-blue); }
+.bottom .src { font-size: 19px; color: var(--zh-mid-grey); text-align: right; line-height: 1.3; }
+.dots { display: flex; gap: 10px; position: absolute; left: 50%; transform: translateX(-50%); top: 38px; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; background: rgba(125, 175, 235, 0.3); }
+.dots i.on { background: var(--zh-hadfield-blue); width: 40px; border-radius: 8px; }
+
+/* Portada (1/6) */
+.cover .logo0x { margin-top: 64px; width: 420px; height: auto; display: block; margin-left: -18px; }
+.cover h1 { margin-top: 26px; font-size: 80px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.06; }
+.cover h1 em { font-style: normal; color: var(--zh-ice-blue); }
+.cover .lead { margin-top: 28px; font-size: 33px; line-height: 1.38; font-weight: 500; max-width: 900px; }
+.cover .lead strong { color: var(--white); font-weight: 700; }
+.cover .barlabel { margin-top: 44px; font-size: 25px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--zh-ice-blue); }
+.cover .bar {
+  margin-top: 16px; width: 936px; border-radius: 30px; overflow: hidden;
+  border: 3px solid rgba(125, 175, 235, 0.55);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.cover .bar img { display: block; width: 100%; }
+.cover .map { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 14px; text-align: center; font-size: 22px; font-weight: 700; color: var(--zh-mid-grey); }
+.cover .swipe { margin-top: 34px; display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 700; color: var(--white); }
+.cover .swipe svg { width: 40px; height: 40px; stroke: var(--zh-hadfield-blue); }
+
+/* Cierre (6/6) */
+.cta {
+  margin-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  border-radius: 24px; padding: 22px 26px;
+  background: var(--zh-hadfield-blue); color: var(--white);
+}
+.cta .t1 { font-size: 22px; font-weight: 600; opacity: .9; }
+.cta .t2 { font-size: 38px; font-weight: 800; letter-spacing: -.3px; }
+.cta svg { width: 44px; height: 44px; stroke: var(--white); flex: none; }
+.credit { margin-top: -6px; font-size: 24px; font-weight: 500; color: var(--zh-mid-grey); }
+.credit strong { color: var(--white); font-weight: 700; }
